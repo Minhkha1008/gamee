@@ -7,6 +7,9 @@ class SoundManager {
         this.sfxEnabled = true;
         this.sounds = {};
         this.initialized = false;
+        this.backgroundMusic = null;
+        this.musicGainNode = null;
+        this.musicPlaying = false;
     }
 
     init() {
@@ -22,10 +25,17 @@ class SoundManager {
 
     setVolume(value) {
         this.volume = Math.max(0, Math.min(1, value));
+        // Update music gain node if it exists
+        if (this.musicGainNode) {
+            this.musicGainNode.gain.value = this.volume * 0.3;
+        }
     }
 
     setMusicEnabled(enabled) {
         this.musicEnabled = enabled;
+        if (!enabled) {
+            this.stopBackgroundMusic();
+        }
     }
 
     setSfxEnabled(enabled) {
@@ -143,6 +153,101 @@ class SoundManager {
     resumeAudioContext() {
         if (this.audioContext && this.audioContext.state === 'suspended') {
             this.audioContext.resume();
+        }
+    }
+
+    // Background Music Methods
+    createBackgroundMusic() {
+        if (!this.initialized) return;
+
+        try {
+            // Create a gain node for music volume control
+            this.musicGainNode = this.audioContext.createGain();
+            this.musicGainNode.connect(this.audioContext.destination);
+            this.musicGainNode.gain.value = this.volume * 0.3; // Music at 30% of master volume
+
+            // Create oscillators for background music melody
+            this.backgroundMusic = [];
+            const melody = [
+                { freq: 261.63, duration: 0.5 },  // C4
+                { freq: 293.66, duration: 0.5 },  // D4
+                { freq: 329.63, duration: 0.5 },  // E4
+                { freq: 349.23, duration: 0.5 },  // F4
+                { freq: 392.00, duration: 0.5 },  // G4
+                { freq: 349.23, duration: 0.5 },  // F4
+                { freq: 329.63, duration: 0.5 },  // E4
+                { freq: 293.66, duration: 0.5 },  // D4
+            ];
+
+            let startTime = this.audioContext.currentTime;
+
+            melody.forEach((note, index) => {
+                const oscillator = this.audioContext.createOscillator();
+                const noteGain = this.audioContext.createGain();
+
+                oscillator.connect(noteGain);
+                noteGain.connect(this.musicGainNode);
+
+                oscillator.frequency.value = note.freq;
+                oscillator.type = 'sine';
+
+                noteGain.gain.setValueAtTime(0, startTime);
+                noteGain.gain.linearRampToValueAtTime(0.5, startTime + 0.05);
+                noteGain.gain.linearRampToValueAtTime(0, startTime + note.duration);
+
+                oscillator.start(startTime);
+                oscillator.stop(startTime + note.duration);
+
+                startTime += note.duration;
+
+                this.backgroundMusic.push(oscillator);
+            });
+        } catch (error) {
+            console.error('Error creating background music:', error);
+        }
+    }
+
+    playBackgroundMusic() {
+        if (!this.initialized || !this.musicEnabled || this.musicPlaying) return;
+
+        this.createBackgroundMusic();
+        this.musicPlaying = true;
+
+        // Loop the music
+        this.musicInterval = setInterval(() => {
+            if (this.musicEnabled && this.musicPlaying) {
+                this.createBackgroundMusic();
+            } else {
+                this.stopBackgroundMusic();
+            }
+        }, 4000); // 4 seconds loop (melody duration)
+    }
+
+    stopBackgroundMusic() {
+        if (this.musicInterval) {
+            clearInterval(this.musicInterval);
+            this.musicInterval = null;
+        }
+
+        if (this.backgroundMusic) {
+            this.backgroundMusic.forEach(osc => {
+                try {
+                    osc.stop();
+                } catch (e) {
+                    // Oscillator already stopped
+                }
+            });
+            this.backgroundMusic = [];
+        }
+
+        this.musicPlaying = false;
+    }
+
+    toggleBackgroundMusic() {
+        if (this.musicPlaying) {
+            this.stopBackgroundMusic();
+        } else {
+            this.playBackgroundMusic();
         }
     }
 }

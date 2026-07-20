@@ -17,6 +17,10 @@ class Bullet {
         element.style.left = `${this.x}px`;
         element.style.bottom = `${this.y}px`;
         document.getElementById('bullets-container').appendChild(element);
+        
+        // Play shooting sound effect
+        soundManager.createShootSound();
+        
         return element;
     }
 

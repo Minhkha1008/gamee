@@ -42,6 +42,9 @@ class SettingsManager {
     setMusicEnabled(enabled) {
         this.settings.musicEnabled = enabled;
         soundManager.setMusicEnabled(enabled);
+        if (enabled && game.isRunning) {
+            soundManager.playBackgroundMusic();
+        }
         this.saveSettings();
     }
 

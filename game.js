@@ -284,6 +284,9 @@ class Game {
         // Start timer
         ui.startTimer();
 
+        // Start background music
+        soundManager.playBackgroundMusic();
+
         // Start game loop
         this.gameLoop = requestAnimationFrame(() => this.update());
 
@@ -411,6 +414,7 @@ class Game {
     gameOver() {
         this.isRunning = false;
         ui.stopTimer();
+        soundManager.stopBackgroundMusic();
         ui.showGameOver();
         console.log('Game Over');
     }
@@ -424,6 +428,7 @@ class Game {
         if (this.gameLoop) {
             cancelAnimationFrame(this.gameLoop);
         }
+        soundManager.stopBackgroundMusic();
         ui.showScreen('main-menu');
     }
 

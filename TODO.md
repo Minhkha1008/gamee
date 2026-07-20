@@ -1,10 +1,34 @@
-# TODO - Integrate Ultimate features into simple-game
+# Kế hoạch sửa chữa ✅ HOÀN THÀNH
 
-- [ ] Update `simple-game.html` to use shared UI/logic from Ultimate (`index.html`): load the same JS modules.
-- [ ] Make `simple-game.html` contain all DOM elements required by Ultimate code (HUD, screens, quiz popup, achievement popup, gameover/win/pause/countdown, overlays, containers).
-- [ ] Remove inline `<style>` and link `css/style.css` + `css/animation.css` to match Ultimate style.
-- [ ] Set up correct menu buttons and ensure scripts attach to existing IDs.
-- [ ] Verify gameplay loop starts from `game.init()` already included in `js/game.js`.
-- [ ] Fix player icon: use the image like in simple, but allow Ultimate CSS.
-- [ ] Smoke test: open `simple-game.html` and confirm quiz timer, power-ups indicators, achievements, high scores, settings, pause.
+## Việc cần làm:
 
+### 1. Fix background image paths ✅
+- [x] Sửa `hinhnen1.jpg` → `hinhnen1.webp` và thêm `hinhnen.jpg` trong CSS
+- [x] Thêm bg-gradient0 cho hinhnen.jpg
+
+### 2. Thêm scripts sound và settings ✅
+- [x] Thêm `<script src="js/sound.js">` và `<script src="js/settings.js">` vào simple-game.html
+
+### 3. Thêm hiệu ứng âm thanh ✅
+- [x] `shoot()` → gọi `soundManager.createShootSound()`
+- [x] `activatePowerUp()` → gọi `soundManager.createPowerupSound()`
+- [x] `showQuiz()` → gọi `soundManager.createClickSound()`
+- [x] `handleAnswer()` → đúng gọi `createCorrectSound()`, sai gọi `createWrongSound()`
+- [x] `gameOver()` → gọi `createGameOverSound()` và `stopBackgroundMusic()`
+- [x] `startGame()` → gọi `playBackgroundMusic()`
+- [x] Va chạm enemy-player → gọi `createDamageSound()`
+
+### 4. Settings screen controls âm thanh ✅
+- [x] Thêm volume slider, music toggle, SFX toggle
+- [x] Sửa CSS chữ cài đặt nhỏ lại (0.85rem), cùng 1 hàng trên mobile (flex-wrap)
+
+### 5. Background persistence ✅
+- [x] Lưu background vào localStorage
+- [x] Load background khi start game
+
+### 6. Khởi tạo SoundManager & SettingsManager ✅
+- [x] Gọi `soundManager.init()` khi game start
+- [x] Gọi `settingsManager.applySettings()` khi game start
+- [x] Gọi `soundManager.resumeAudioContext()` khi game start
+</｜｜DSML｜｜parameter>
+</create_file>

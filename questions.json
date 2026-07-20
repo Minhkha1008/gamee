@@ -1,0 +1,1204 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "category": "HTML",
+      "question": "HTML dùng để làm gì?",
+      "options": [
+        "Thiết kế giao diện",
+        "Tạo cấu trúc Website",
+        "Quản lý Database",
+        "Chạy Server"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 2,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo tiêu đề lớn nhất trong HTML?",
+      "options": [
+        "<title>",
+        "<h1>",
+        "<header>",
+        "<heading>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 3,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo liên kết trong HTML?",
+      "options": [
+        "<link>",
+        "<a>",
+        "<href>",
+        "<url>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 4,
+      "category": "HTML",
+      "question": "Thuộc tính nào dùng để chỉ định đường dẫn hình ảnh?",
+      "options": [
+        "href",
+        "link",
+        "src",
+        "path"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 5,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo danh sách không có thứ tự?",
+      "options": [
+        "<ol>",
+        "<ul>",
+        "<li>",
+        "<list>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 6,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo bảng trong HTML?",
+      "options": [
+        "<table>",
+        "<grid>",
+        "<matrix>",
+        "<sheet>"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 7,
+      "category": "HTML",
+      "question": "Thuộc tính 'alt' trong thẻ <img> dùng để làm gì?",
+      "options": [
+        "Chỉ định nguồn ảnh",
+        "Mô tả thay thế khi ảnh không hiển thị",
+        "Thay đổi kích thước ảnh",
+        "Tạo hiệu ứng ảnh"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 8,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo form trong HTML?",
+      "options": [
+        "<input>",
+        "<form>",
+        "<submit>",
+        "<field>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 9,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo đoạn văn bản?",
+      "options": [
+        "<text>",
+        "<paragraph>",
+        "<p>",
+        "<div>"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 10,
+      "category": "HTML",
+      "question": "Tag nào dùng để chèn video trong HTML?",
+      "options": [
+        "<movie>",
+        "<video>",
+        "<media>",
+        "<play>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 11,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo dòng ngang?",
+      "options": [
+        "<line>",
+        "<hr>",
+        "<br>",
+        "<divider>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 12,
+      "category": "HTML",
+      "question": "Thuộc tính 'target' trong thẻ <a> với giá trị '_blank' làm gì?",
+      "options": [
+        "Mở liên kết trong cùng tab",
+        "Mở liên kết trong tab mới",
+        "Đóng tab hiện tại",
+        "Tải lại trang"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 13,
+      "category": "HTML",
+      "question": "Tag nào dùng để tạo danh sách có thứ tự?",
+      "options": [
+        "<ul>",
+        "<ol>",
+        "<li>",
+        "<dl>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 14,
+      "category": "HTML",
+      "question": "Tag <meta> thường được đặt ở đâu trong HTML?",
+      "options": [
+        "Trong phần <body>",
+        "Trong phần <head>",
+        "Trong phần <footer>",
+        "Trong phần <header>"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 15,
+      "category": "CSS",
+      "question": "CSS dùng để làm gì?",
+      "options": [
+        "Tạo cấu trúc Website",
+        "Thiết kế giao diện",
+        "Quản lý Database",
+        "Xử lý logic"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 16,
+      "category": "CSS",
+      "question": "Cách nào đúng để thay đổi màu chữ trong CSS?",
+      "options": [
+        "color: red",
+        "text-color: red",
+        "font-color: red",
+        "text-style: red"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 17,
+      "category": "CSS",
+      "question": "Thuộc tính nào dùng để thay đổi màu nền?",
+      "options": [
+        "color",
+        "background-color",
+        "bg-color",
+        "fill-color"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 18,
+      "category": "CSS",
+      "question": "Cách nào đúng để canh giữa văn bản?",
+      "options": [
+        "align: center",
+        "text-align: center",
+        "justify: center",
+        "center: true"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 19,
+      "category": "CSS",
+      "question": "Thuộc tính 'margin' dùng để làm gì?",
+      "options": [
+        "Thay đổi kích thước",
+        "Tạo khoảng cách bên ngoài",
+        "Tạo khoảng cách bên trong",
+        "Thay đổi màu sắc"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 20,
+      "category": "CSS",
+      "question": "Thuộc tính 'padding' dùng để làm gì?",
+      "options": [
+        "Tạo khoảng cách bên ngoài",
+        "Tạo khoảng cách bên trong",
+        "Thay đổi kích thước",
+        "Thay đổi vị trí"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 21,
+      "category": "CSS",
+      "question": "Cách nào đúng để làm cho văn bản in đậm?",
+      "options": [
+        "font-style: bold",
+        "font-weight: bold",
+        "text-weight: bold",
+        "style: bold"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 22,
+      "category": "CSS",
+      "question": "Thuộc tính 'display: flex' dùng để làm gì?",
+      "options": [
+        "Ẩn phần tử",
+        "Tạo layout linh hoạt",
+        "Thay đổi màu sắc",
+        "Tạo hiệu ứng"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 23,
+      "category": "CSS",
+      "question": "Cách nào đúng để thay đổi font chữ?",
+      "options": [
+        "font: Arial",
+        "font-family: Arial",
+        "text-font: Arial",
+        "typeface: Arial"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 24,
+      "category": "CSS",
+      "question": "Thuộc tính 'position: absolute' làm gì?",
+      "options": [
+        "Định vị theo phần tử cha",
+        "Định vị theo trang",
+        "Định vị theo phần tử trước",
+        "Giữ nguyên vị trí"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 25,
+      "category": "CSS",
+      "question": "Cách nào đúng để tạo bo tròn góc?",
+      "options": [
+        "corner-radius: 10px",
+        "border-radius: 10px",
+        "round: 10px",
+        "curve: 10px"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 26,
+      "category": "CSS",
+      "question": "Thuộc tính 'z-index' dùng để làm gì?",
+      "options": [
+        "Thay đổi kích thước",
+        "Thay đổi thứ tự hiển thị",
+        "Thay đổi màu sắc",
+        "Thay đổi vị trí"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 27,
+      "category": "CSS",
+      "question": "Cách nào đúng để tạo bóng đổ?",
+      "options": [
+        "shadow: 5px 5px 10px",
+        "box-shadow: 5px 5px 10px",
+        "drop-shadow: 5px 5px 10px",
+        "filter-shadow: 5px 5px 10px"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 28,
+      "category": "CSS",
+      "question": "Thuộc tính 'overflow: hidden' làm gì?",
+      "options": [
+        "Hiển thị thanh cuộn",
+        "Ẩn nội dung tràn ra",
+        "Tự động canh chỉnh",
+        "Mở rộng phần tử"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 29,
+      "category": "CSS",
+      "question": "Cách nào đúng để tạo hiệu ứng chuyển đổi?",
+      "options": [
+        "change: 0.3s",
+        "transition: 0.3s",
+        "animate: 0.3s",
+        "effect: 0.3s"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 30,
+      "category": "CSS",
+      "question": "Pseudo-class ':hover' dùng để làm gì?",
+      "options": [
+        "Khi phần tử được click",
+        "Khi con trỏ di chuyển qua",
+        "Khi phần tử được tải",
+        "Khi phần tử bị ẩn"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 31,
+      "category": "JavaScript",
+      "question": "JavaScript dùng để làm gì?",
+      "options": [
+        "Tạo cấu trúc Website",
+        "Thiết kế giao diện",
+        "Tạo tương tác động",
+        "Quản lý Database"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 32,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để khai báo biến trong JavaScript?",
+      "options": [
+        "variable x = 5",
+        "var x = 5",
+        "let x = 5",
+        "Cả B và C đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 33,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để tạo hàm trong JavaScript?",
+      "options": [
+        "function myFunction() {}",
+        "def myFunction() {}",
+        "create myFunction() {}",
+        "method myFunction() {}"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 34,
+      "category": "JavaScript",
+      "question": "Phương thức nào dùng để hiển thị thông báo?",
+      "options": [
+        "msg()",
+        "alert()",
+        "show()",
+        "display()"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 35,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để truy cập phần tử theo ID?",
+      "options": [
+        "getElement('id')",
+        "document.getElementById('id')",
+        "selectElement('id')",
+        "findElement('id')"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 36,
+      "category": "JavaScript",
+      "question": "Phương thức 'addEventListener' dùng để làm gì?",
+      "options": [
+        "Tạo phần tử mới",
+        "Thêm sự kiện",
+        "Xóa phần tử",
+        "Thay đổi style"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 37,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để tạo mảng trong JavaScript?",
+      "options": [
+        "array = [1, 2, 3]",
+        "var array = [1, 2, 3]",
+        "let array = [1, 2, 3]",
+        "Cả B và C đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 38,
+      "category": "JavaScript",
+      "question": "Phương thức 'push' làm gì với mảng?",
+      "options": [
+        "Xóa phần tử cuối",
+        "Thêm phần tử vào cuối",
+        "Xóa phần tử đầu",
+        "Thêm phần tử vào đầu"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 39,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để lặp qua mảng?",
+      "options": [
+        "for (i in array)",
+        "for (let i = 0; i < array.length; i++)",
+        "array.each()",
+        "Cả A và B đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 40,
+      "category": "JavaScript",
+      "question": "Phương thức 'parseInt' dùng để làm gì?",
+      "options": [
+        "Chuyển thành chuỗi",
+        "Chuyển thành số nguyên",
+        "Làm tròn số",
+        "Kiểm tra số"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 41,
+      "category": "JavaScript",
+      "question": "Toán tử '===' trong JavaScript làm gì?",
+      "options": [
+        "So sánh giá trị",
+        "So sánh cả giá trị và kiểu",
+        "Gán giá trị",
+        "Kiểm tra tồn tại"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 42,
+      "category": "JavaScript",
+      "question": "Phương thức 'setTimeout' dùng để làm gì?",
+      "options": [
+        "Dừng mã",
+        "Thực hiện sau khoảng thời gian",
+        "Lặp lại mã",
+        "Hủy mã"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 43,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để tạo object trong JavaScript?",
+      "options": [
+        "obj = {name: 'John'}",
+        "var obj = {name: 'John'}",
+        "let obj = {name: 'John'}",
+        "Cả B và C đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 44,
+      "category": "JavaScript",
+      "question": "Phương thức 'JSON.stringify' dùng để làm gì?",
+      "options": [
+        "Chuyển object thành chuỗi JSON",
+        "Chuyển chuỗi JSON thành object",
+        "Kiểm tra JSON",
+        "Tạo JSON mới"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 45,
+      "category": "JavaScript",
+      "question": "Từ khóa 'this' trong JavaScript tham chiếu đến gì?",
+      "options": [
+        "Function hiện tại",
+        "Object đang được thực thi",
+        "Global object",
+        "Parent object"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 46,
+      "category": "JavaScript",
+      "question": "Phương thức 'map' làm gì với mảng?",
+      "options": [
+        "Lọc mảng",
+        "Chuyển đổi từng phần tử",
+        "Sắp xếp mảng",
+        "Tìm phần tử"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 47,
+      "category": "JavaScript",
+      "question": "Phương thức 'filter' làm gì với mảng?",
+      "options": [
+        "Chuyển đổi mảng",
+        "Lọc các phần tử thỏa mãn",
+        "Sắp xếp mảng",
+        "Thêm phần tử"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 48,
+      "category": "JavaScript",
+      "question": "Promise trong JavaScript dùng để làm gì?",
+      "options": [
+        "Xử lý đồng bộ",
+        "Xử lý bất đồng bộ",
+        "Tạo hàm",
+        "Quản lý biến"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 49,
+      "category": "JavaScript",
+      "question": "Cách nào đúng để import module?",
+      "options": [
+        "import './module'",
+        "require('./module')",
+        "include './module'",
+        "Cả A và B đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 50,
+      "category": "JavaScript",
+      "question": "Arrow function trong JavaScript có cú pháp nào?",
+      "options": [
+        "function => ()",
+        "() => {}",
+        "=> function {}",
+        "function-> {}"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 51,
+      "category": "Bootstrap",
+      "question": "Bootstrap là gì?",
+      "options": [
+        "Một ngôn ngữ lập trình",
+        "Một framework CSS",
+        "Một thư viện JavaScript",
+        "Một Database"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 52,
+      "category": "Bootstrap",
+      "question": "Grid system của Bootstrap có bao nhiêu cột?",
+      "options": [
+        "10 cột",
+        "12 cột",
+        "16 cột",
+        "24 cột"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 53,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo container trong Bootstrap?",
+      "options": [
+        ".container",
+        ".box",
+        ".wrapper",
+        ".main"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 54,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo nút trong Bootstrap?",
+      "options": [
+        ".button",
+        ".btn",
+        ".btn-primary",
+        "Cả B và C đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 55,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo alert trong Bootstrap?",
+      "options": [
+        ".alert",
+        ".warning",
+        ".message",
+        ".notice"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 56,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo card trong Bootstrap?",
+      "options": [
+        ".card",
+        ".box",
+        ".panel",
+        ".content"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 57,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo navbar trong Bootstrap?",
+      "options": [
+        ".navbar",
+        ".menu",
+        ".navigation",
+        ".header"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 58,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo form trong Bootstrap?",
+      "options": [
+        ".form",
+        ".input-group",
+        ".form-control",
+        "Cả A và C đều đúng"
+      ],
+      "correct": 3
+    },
+    {
+      "id": 59,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo modal trong Bootstrap?",
+      "options": [
+        ".modal",
+        ".popup",
+        ".dialog",
+        ".window"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 60,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo carousel trong Bootstrap?",
+      "options": [
+        ".slider",
+        ".carousel",
+        ".gallery",
+        ".slideshow"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 61,
+      "category": "Bootstrap",
+      "question": "Prefix của Bootstrap class là gì?",
+      "options": [
+        "bs-",
+        "Không có prefix",
+        "boot-",
+        "b-"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 62,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo table trong Bootstrap?",
+      "options": [
+        ".table",
+        ".grid",
+        ".list",
+        ".data"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 63,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo badge trong Bootstrap?",
+      "options": [
+        ".badge",
+        ".tag",
+        ".label",
+        ".mark"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 64,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo progress bar trong Bootstrap?",
+      "options": [
+        ".progress",
+        ".bar",
+        ".loading",
+        ".meter"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 65,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo dropdown trong Bootstrap?",
+      "options": [
+        ".dropdown",
+        ".menu",
+        ".select",
+        ".list"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 66,
+      "category": "Bootstrap",
+      "question": "Bootstrap hỗ trợ responsive design bằng cách nào?",
+      "options": [
+        "Media queries",
+        "JavaScript",
+        "Server-side",
+        "Database"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 67,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo jumbotron trong Bootstrap?",
+      "options": [
+        ".jumbotron",
+        ".hero",
+        ".banner",
+        ".header"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 68,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo input group trong Bootstrap?",
+      "options": [
+        ".input-group",
+        ".form-group",
+        ".input-wrapper",
+        ".field-group"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 69,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo tooltip trong Bootstrap?",
+      "options": [
+        ".tooltip",
+        ".hint",
+        ".help",
+        ".info"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 70,
+      "category": "Bootstrap",
+      "question": "Class nào dùng để tạo collapse trong Bootstrap?",
+      "options": [
+        ".collapse",
+        ".accordion",
+        ".toggle",
+        ".expand"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 71,
+      "category": "Tin học",
+      "question": "CPU là gì?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Personal Unit",
+        "Central Program Unit",
+        "Computer Processing Unit"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 72,
+      "category": "Tin học",
+      "question": "RAM là gì?",
+      "options": [
+        "Read Access Memory",
+        "Random Access Memory",
+        "Run Access Memory",
+        "Read All Memory"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 73,
+      "category": "Tin học",
+      "question": "ROM là gì?",
+      "options": [
+        "Read Only Memory",
+        "Random Only Memory",
+        "Run Only Memory",
+        "Read Output Memory"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 74,
+      "category": "Tin học",
+      "question": "Đơn vị cơ bản của dữ liệu máy tính là gì?",
+      "options": [
+        "Byte",
+        "Bit",
+        "KB",
+        "MB"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 75,
+      "category": "Tin học",
+      "question": "1 Byte bằng bao nhiêu Bit?",
+      "options": [
+        "4 bit",
+        "8 bit",
+        "16 bit",
+        "32 bit"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 76,
+      "category": "Tin học",
+      "question": "HTTP là gì?",
+      "options": [
+        "HyperText Transfer Protocol",
+        "High Tech Transfer Protocol",
+        "HyperText Technical Protocol",
+        "HyperText Transmission Protocol"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 77,
+      "category": "Tin học",
+      "question": "HTTPS khác HTTP ở điểm nào?",
+      "options": [
+        "Nhanh hơn",
+        "Bảo mật hơn",
+        "Dễ dùng hơn",
+        "Miễn phí hơn"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 78,
+      "category": "Tin học",
+      "question": "IP address là gì?",
+      "options": [
+        "Địa chỉ Internet Protocol",
+        "Địa chỉ International Protocol",
+        "Địa chỉ Internal Protocol",
+        "Địa chí Information Protocol"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 79,
+      "category": "Tin học",
+      "question": "DNS là gì?",
+      "options": [
+        "Domain Name System",
+        "Domain Network System",
+        "Data Name System",
+        "Digital Name System"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 80,
+      "category": "Tin học",
+      "question": "URL là gì?",
+      "options": [
+        "Universal Resource Locator",
+        "Uniform Resource Locator",
+        "Universal Resource Link",
+        "Uniform Resource Link"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 81,
+      "category": "Tin học",
+      "question": "Algorithm là gì?",
+      "options": [
+        "Một ngôn ngữ lập trình",
+        "Một chuỗi các bước để giải quyết vấn đề",
+        "Một phần cứng máy tính",
+        "Một hệ điều hành"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 82,
+      "category": "Tin học",
+      "question": "Bug trong phần mềm là gì?",
+      "options": [
+        "Một tính năng",
+        "Một lỗi",
+        "Một virus",
+        "Một plugin"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 83,
+      "category": "Tin học",
+      "question": "Cloud computing là gì?",
+      "options": [
+        "Lưu trữ dữ liệu trên đám mây",
+        "Tính toán trên máy bay",
+        "Lập trình trên điện thoại",
+        "Mạng cục bộ"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 84,
+      "category": "Tin học",
+      "question": "API là gì?",
+      "options": [
+        "Application Programming Interface",
+        "Application Program Interface",
+        "Advanced Programming Interface",
+        "Automated Program Interface"
+      ],
+      "correct": 0
+    },
+    {
+      "id": 85,
+      "category": "Tin học",
+      "question": "Database là gì?",
+      "options": [
+        "Một ngôn ngữ lập trình",
+        "Một hệ thống lưu trữ dữ liệu",
+        "Một hệ điều hành",
+        "Một phần mềm đồ họa"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 86,
+      "category": "Toán",
+      "question": "2 + 2 x 2 = ?",
+      "options": [
+        "8",
+        "6",
+        "4",
+        "2"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 87,
+      "category": "Toán",
+      "question": "√144 = ?",
+      "options": [
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 88,
+      "category": "Toán",
+      "question": "5! = ?",
+      "options": [
+        "100",
+        "120",
+        "150",
+        "25"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 89,
+      "category": "Toán",
+      "question": "15% của 200 là gì?",
+      "options": [
+        "25",
+        "30",
+        "35",
+        "40"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 90,
+      "category": "Toán",
+      "question": "Tam giác có bao nhiêu cạnh?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 91,
+      "category": "Toán",
+      "question": "Hình tròn có bao nhiêu đường kính?",
+      "options": [
+        "1",
+        "2",
+        "Vô số",
+        "0"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 92,
+      "category": "Toán",
+      "question": "2^3 = ?",
+      "options": [
+        "6",
+        "8",
+        "9",
+        "12"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 93,
+      "category": "Toán",
+      "question": "Số nguyên tố đầu tiên là gì?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 94,
+      "category": "Toán",
+      "question": "Góc vuông bằng bao nhiêu độ?",
+      "options": [
+        "45°",
+        "90°",
+        "180°",
+        "360°"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 95,
+      "category": "Toán",
+      "question": "Chu vi hình vuông cạnh 5cm là bao nhiêu?",
+      "options": [
+        "10cm",
+        "15cm",
+        "20cm",
+        "25cm"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 96,
+      "category": "Tiếng Anh",
+      "question": "'Hello' có nghĩa là gì?",
+      "options": [
+        "Tạm biệt",
+        "Xin chào",
+        "Cảm ơn",
+        "Xin lỗi"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 97,
+      "category": "Tiếng Anh",
+      "question": "'Thank you' có nghĩa là gì?",
+      "options": [
+        "Xin chào",
+        "Cảm ơn",
+        "Xin lỗi",
+        "Tạm biệt"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 98,
+      "category": "Tiếng Anh",
+      "question": "'Goodbye' có nghĩa là gì?",
+      "options": [
+        "Xin chào",
+        "Cảm ơn",
+        "Tạm biệt",
+        "Xin lỗi"
+      ],
+      "correct": 2
+    },
+    {
+      "id": 99,
+      "category": "Tiếng Anh",
+      "question": "'Sorry' có nghĩa là gì?",
+      "options": [
+        "Cảm ơn",
+        "Xin lỗi",
+        "Xin chào",
+        "Tạm biệt"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 100,
+      "category": "Tiếng Anh",
+      "question": "'Please' có nghĩa là gì?",
+      "options": [
+        "Xin lỗi",
+        "Cảm ơn",
+        "Làm ơn",
+        "Tạm biệt"
+      ],
+      "correct": 2
+    }
+  ]
+}

@@ -1,0 +1,766 @@
+/* Animations */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes cloudMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+}
+
+@keyframes damageFlash {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes correctFlash {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes shieldFlash {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes menuGlow {
+    0%, 100% {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 150px rgba(102, 126, 234, 0.5);
+    }
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes countdownPulse {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fieldWave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes bossFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes powerupFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(10deg);
+    }
+}
+
+@keyframes indicatorPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes correctAnswer {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes wrongAnswer {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes achievementSlide {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes gameoverShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes newHighscorePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes winBounce {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes starsAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes badgeAppear {
+    0% {
+        transform: scale(0) rotate(-180deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Animation Classes */
+.animate-pulse {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.animate-shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+.animate-float {
+    animation: float 2s ease-in-out infinite;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+.animate-slide-out {
+    animation: slideOut 0.5s ease-out forwards;
+}
+
+.animate-bounce {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Enemy Animations */
+.enemy-spawn {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.enemy-hit {
+    animation: shake 0.2s ease-in-out;
+}
+
+.enemy-fall {
+    transition: top 0.1s linear;
+}
+
+/* Bullet Animations */
+.bullet-fire {
+    animation: slideIn 0.1s ease-out;
+}
+
+/* Player Animations */
+.player-shoot {
+    animation: bounce 0.2s ease-out;
+}
+
+.player-damage {
+    animation: shake 0.3s ease-in-out;
+}
+
+/* UI Animations */
+.score-popup {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+.combo-increase {
+    animation: pulse 0.5s ease-out;
+}
+
+/* Screen Transitions */
+.screen-transition {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Quiz Animations */
+.quiz-appear {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.quiz-disappear {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+.option-hover {
+    animation: glow 1s ease-in-out infinite;
+}
+
+/* Effect Animations */
+.flash-correct {
+    animation: correctFlash 0.5s ease-out;
+}
+
+.flash-wrong {
+    animation: damageFlash 0.5s ease-out;
+}
+
+.flash-shield {
+    animation: shieldFlash 0.5s ease-out;
+}
+
+/* Boss Animations */
+.boss-entrance {
+    animation: slideIn 1s ease-out, pulse 2s ease-in-out infinite;
+}
+
+.boss-attack {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Power-up Animations */
+.powerup-float {
+    animation: float 2s ease-in-out infinite;
+}
+
+.powerup-collect {
+    animation: explode 0.5s ease-out forwards;
+}
+
+/* Level Complete Animations */
+.level-complete {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Game Over Animations */
+.gameover-appear {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Win Animations */
+.win-appear {
+    animation: fadeIn 1s ease-out;
+}
+
+.stars-appear {
+    animation: bounce 0.5s ease-out;
+}
+
+/* Countdown Animations */
+.countdown-3 {
+    animation: pulse 0.5s ease-out;
+}
+
+.countdown-2 {
+    animation: pulse 0.5s ease-out;
+}
+
+.countdown-1 {
+    animation: pulse 0.5s ease-out;
+}
+
+.countdown-start {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Particle Effects */
+@keyframes particle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: particle 1s ease-out forwards;
+    pointer-events: none;
+}
+
+/* Text Effects */
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px currentColor;
+    }
+    50% {
+        text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+}
+
+.text-glow {
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+/* Health Bar Animation */
+@keyframes healthDecrease {
+    from {
+        width: var(--from-width);
+    }
+    to {
+        width: var(--to-width);
+    }
+}
+
+.health-decrease {
+    animation: healthDecrease 0.3s ease-out;
+}
+
+/* Progress Bar Animation */
+@keyframes progressFill {
+    from {
+        width: 0%;
+    }
+    to {
+        width: var(--target-width);
+    }
+}
+
+.progress-fill {
+    animation: progressFill 1s ease-out;
+}
+
+/* Button Hover Effects */
+@keyframes buttonShine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
+.button-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: buttonShine 2s ease-in-out infinite;
+}
+
+/* Loading Animation */
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: loading 1s linear infinite;
+}
+
+/* Typing Animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+}
+
+/* Blink Animation */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 1s step-end infinite;
+}
+
+/* Wave Animation */
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-5px);
+    }
+    75% {
+        transform: translateY(5px);
+    }
+}
+
+.wave {
+    animation: wave 2s ease-in-out infinite;
+}
+
+/* Scale Animation */
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.scale-in {
+    animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleOut {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
+.scale-out {
+    animation: scaleOut 0.3s ease-out forwards;
+}
+
+/* Rotate Animation */
+@keyframes rotateIn {
+    from {
+        transform: rotate(-180deg) scale(0);
+    }
+    to {
+        transform: rotate(0) scale(1);
+    }
+}
+
+.rotate-in {
+    animation: rotateIn 0.5s ease-out;
+}
+
+@keyframes rotateOut {
+    from {
+        transform: rotate(0) scale(1);
+    }
+    to {
+        transform: rotate(180deg) scale(0);
+    }
+}
+
+.rotate-out {
+    animation: rotateOut 0.5s ease-out forwards;
+}
+
+/* Flip Animation */
+@keyframes flip {
+    0% {
+        transform: perspective(400px) rotateY(0);
+    }
+    100% {
+        transform: perspective(400px) rotateY(360deg);
+    }
+}
+
+.flip {
+    animation: flip 1s ease-in-out;
+}
+
+/* Zoom Animation */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.zoom-in {
+    animation: zoomIn 0.5s ease-out;
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+.zoom-out {
+    animation: zoomOut 0.5s ease-out forwards;
+}
+
+/* Slide Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.slide-down {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-left {
+    animation: slideLeft 0.5s ease-out;
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.slide-right {
+    animation: slideRight 0.5s ease-out;
+}

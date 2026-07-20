@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Quiz Defender - Ultimate Edition</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen">
+        <div class="menu-content">
+            <h1 class="game-title">✈️ SKY QUIZ DEFENDER ✈️</h1>
+            <p class="game-subtitle">Ultimate Edition - Bảo vệ cánh đồng lúa!</p>
+            <div class="menu-buttons">
+               <a href="simple-game.html" target="_blank" rel="noopener noreferrer" class="menu-btn">
+    🎮 PLAY
+</a>
+                <button id="btn-highscores" class="menu-btn">🏆 HIGH SCORES</button>
+                <button id="btn-guide" class="menu-btn">📖 HƯỚNG DẪN</button>
+                <button id="btn-settings" class="menu-btn">⚙️ CÀI ĐẶT</button>
+                <button id="btn-exit" class="menu-btn">🚪 THOÁT</button>
+            </div>
+
+            <div class="menu-footer">
+                <p class="version">Version 2.0 - Ultimate Edition</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- High Scores Screen -->
+    <div id="highscores-screen" class="screen hidden">
+        <div class="highscores-content">
+            <h2>🏆 BẢNG XẾP HẠNG 🏆</h2>
+            <div id="highscores-list" class="highscores-list">
+                <!-- High scores will be loaded here -->
+            </div>
+            <button id="btn-back-menu" class="menu-btn">⬅️ QUAY LẠI</button>
+        </div>
+    </div>
+
+    <!-- Guide Screen -->
+    <div id="guide-screen" class="screen hidden">
+        <div class="guide-content">
+            <h2>HƯỚNG DẪN CHƠI</h2>
+            <div class="guide-section">
+                <h3>🎯 Điều khiển</h3>
+                <ul>
+                    <li><kbd>←</kbd> <kbd>→</kbd> : Di chuyển máy bay</li>
+                    <li><kbd>Space</kbd> : Bắn đạn</li>
+                    <li><kbd>1</kbd> - <kbd>4</kbd> : Chọn đáp án câu hỏi</li>
+                    <li><kbd>P</kbd> : Pause game</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h3>🎮 Cách chơi</h3>
+                <ul>
+                    <li>Di chuyển máy bay để bắn hạ quái vật rơi từ trên trời</li>
+                    <li>Mỗi khi tiêu diệt quái, hãy trả lời đúng câu hỏi để tiếp tục</li>
+                    <li>Trả lời sai sẽ mất 1 máu</li>
+                    <li>Quái chạm máy bay sẽ mất 1 máu</li>
+                    <li>Có 3 máu, mất hết sẽ Game Over</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h3>⭐ Điểm số</h3>
+                <ul>
+                    <li>Bắn trúng: +10 điểm</li>
+                    <li>Giết quái: +50 điểm</li>
+                    <li>Trả lời đúng: +100 điểm</li>
+                    <li>Combo: Tăng điểm thưởng (x2, x3, x5)</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h3>🎁 Power-ups</h3>
+                <ul>
+                    <li>❤️ : Hồi 1 máu</li>
+                    <li>⚡ : Tăng tốc bắn (10s)</li>
+                    <li>🛡️ : Khiên bảo vệ (10s)</li>
+                    <li>💣 : Nổ toàn màn hình</li>
+                </ul>
+            </div>
+            <button id="btn-back" class="menu-btn">⬅️ QUAY LẠI</button>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen hidden">
+        <div class="settings-content">
+            <h2>⚙️ CÀI ĐẶT</h2>
+            <div class="setting-item">
+                <label>🔊 Âm lượng:</label>
+                <input type="range" id="volume-slider" min="0" max="100" value="70">
+                <span id="volume-value">70%</span>
+            </div>
+            <div class="setting-item">
+                <label>🎵 Nhạc nền:</label>
+                <input type="checkbox" id="music-toggle" checked>
+            </div>
+            <div class="setting-item">
+                <label>🔔 Hiệu ứng âm thanh:</label>
+                <input type="checkbox" id="sfx-toggle" checked>
+            </div>
+            <div class="setting-item">
+                <label>📱 Chế độ khó:</label>
+                <select id="difficulty-select">
+                    <option value="easy">Dễ</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Khó</option>
+                </select>
+            </div>
+            <button id="btn-save-settings" class="menu-btn">💾 LƯU</button>
+            <button id="btn-back-settings" class="menu-btn">⬅️ QUAY LẠI</button>
+        </div>
+    </div>
+
+    <!-- Pause Screen -->
+    <div id="pause-screen" class="screen hidden">
+        <div class="pause-content">
+            <h2>⏸️ PAUSE</h2>
+            <div class="pause-buttons">
+                <button id="btn-resume" class="menu-btn">▶️ TIẾP TỤC</button>
+                <button id="btn-restart-pause" class="menu-btn">🔄 CHƠI LẠI</button>
+                <button id="btn-quit" class="menu-btn">🚪 THOÁT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown-screen" class="screen hidden">
+        <div class="countdown-content">
+            <div id="countdown-number" class="countdown-number">3</div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen hidden">
+        <!-- HUD -->
+        <div id="hud" class="hud">
+            <div class="hud-left">
+                <div class="hud-item">
+                    <span class="hud-label">Điểm:</span>
+                    <span id="score" class="hud-value">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">High Score:</span>
+                    <span id="highscore" class="hud-value">0</span>
+                </div>
+            </div>
+            <div class="hud-center">
+                <div class="hud-item">
+                    <span class="hud-label">Combo:</span>
+                    <span id="combo" class="hud-value">x1</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="hud-item">
+                    <span class="hud-label">Level:</span>
+                    <span id="level" class="hud-value">1</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Time:</span>
+                    <span id="timer" class="hud-value">00:00</span>
+                </div>
+                <div class="hud-item">
+                    <span id="hearts" class="hud-value">❤❤❤</span>
+                </div>
+                <div class="hud-item">
+                    <button id="btn-pause" class="pause-btn">⏸️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Power-up indicators -->
+        <div id="powerup-indicators" class="powerup-indicators">
+            <div id="shield-indicator" class="powerup-indicator hidden">🛡️</div>
+            <div id="speed-indicator" class="powerup-indicator hidden">⚡</div>
+        </div>
+
+        <!-- Game Canvas -->
+        <div id="game-container" class="game-container">
+            <!-- Background layers -->
+            <div class="background-layer sky"></div>
+            <div class="background-layer clouds"></div>
+            <div class="background-layer clouds-back"></div>
+            <div class="background-layer trees-left"></div>
+            <div class="background-layer trees-right"></div>
+            <div class="background-layer rice-field"></div>
+            
+            <!-- Game elements -->
+            <div id="enemies-container" class="game-layer"></div>
+            <div id="bullets-container" class="game-layer"></div>
+            <div id="powerups-container" class="game-layer"></div>
+            <div id="player" class="player">✈️</div>
+        </div>
+    </div>
+
+    <!-- Quiz Popup -->
+    <div id="quiz-popup" class="popup hidden">
+        <div class="quiz-content">
+            <div class="quiz-header">
+                <span id="quiz-number" class="quiz-number">Câu 1</span>
+                <span id="quiz-category" class="quiz-category">HTML</span>
+            </div>
+            <div id="quiz-question" class="quiz-question">HTML dùng để làm gì?</div>
+            <div id="quiz-options" class="quiz-options">
+                <button class="quiz-option" data-answer="0">A. Thiết kế giao diện</button>
+                <button class="quiz-option" data-answer="1">B. Tạo cấu trúc Website</button>
+                <button class="quiz-option" data-answer="2">C. Quản lý Database</button>
+                <button class="quiz-option" data-answer="3">D. Chạy Server</button>
+            </div>
+            <div id="quiz-timer" class="quiz-timer">⏱️ 15s</div>
+            <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+        </div>
+    </div>
+
+    <!-- Achievement Popup -->
+    <div id="achievement-popup" class="achievement-popup hidden">
+        <div class="achievement-content">
+            <div class="achievement-icon">🏆</div>
+            <div class="achievement-text">
+                <div class="achievement-title">Achievement Unlocked!</div>
+                <div id="achievement-name" class="achievement-name">First Blood</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen hidden">
+        <div class="gameover-content">
+            <h1 class="gameover-title">GAME OVER</h1>
+            <div class="gameover-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Điểm:</span>
+                    <span id="final-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Đúng:</span>
+                    <span id="correct-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Sai:</span>
+                    <span id="wrong-count" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Thời gian:</span>
+                    <span id="final-time" class="stat-value">00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">High Score:</span>
+                    <span id="gameover-highscore" class="stat-value">0</span>
+                </div>
+            </div>
+            <div id="new-highscore" class="new-highscore hidden">
+                🎉 NEW HIGH SCORE! 🎉
+            </div>
+            <button id="btn-restart" class="menu-btn">🔄 PLAY AGAIN</button>
+            <button id="btn-menu" class="menu-btn">🏠 MAIN MENU</button>
+        </div>
+    </div>
+
+    <!-- Win Screen -->
+    <div id="win-screen" class="screen hidden">
+        <div class="win-content">
+            <h1 class="win-title">🎉 MISSION COMPLETE 🎉</h1>
+            <div class="stars">⭐⭐⭐</div>
+            <div class="win-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Điểm:</span>
+                    <span id="win-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Accuracy:</span>
+                    <span id="accuracy" class="stat-value">0%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Thời gian:</span>
+                    <span id="win-time" class="stat-value">00:00</span>
+                </div>
+            </div>
+            <div id="achievements-unlocked" class="achievements-unlocked hidden">
+                <h3>🏆 Achievements Unlocked:</h3>
+                <div id="achievements-list" class="achievements-list"></div>
+            </div>
+            <button id="btn-play-again" class="menu-btn">🔄 PLAY AGAIN</button>
+            <button id="btn-home" class="menu-btn">🏠 MAIN MENU</button>
+        </div>
+    </div>
+
+    <!-- Effect overlays -->
+    <div id="flash-overlay" class="flash-overlay hidden"></div>
+    <div id="damage-overlay" class="damage-overlay hidden"></div>
+    <div id="shield-overlay" class="shield-overlay hidden"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Ensure main menu is visible immediately
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainMenu = document.getElementById('main-menu');
+            const btnHighscores = document.getElementById('btn-highscores');
+            const btnGuide = document.getElementById('btn-guide');
+            const btnSettings = document.getElementById('btn-settings');
+            const btnExit = document.getElementById('btn-exit');
+            const btnBackMenu = document.getElementById('btn-back-menu');
+            const btnBack = document.getElementById('btn-back');
+            const btnBackSettings = document.getElementById('btn-back-settings');
+
+            if (mainMenu) {
+                mainMenu.classList.remove('hidden');
+            }
+
+            // High scores button
+            if (btnHighscores) {
+                btnHighscores.addEventListener('click', () => {
+                    if (mainMenu) mainMenu.classList.add('hidden');
+                    document.getElementById('highscores-screen').classList.remove('hidden');
+                    // Load and display high scores
+                    const highScores = JSON.parse(localStorage.getItem('quizPlaneHighScores') || '[]');
+                    const container = document.getElementById('highscores-list');
+                    container.innerHTML = '';
+                    
+                    if (highScores.length === 0) {
+                        container.innerHTML = '<p class="no-scores">Chưa có điểm số nào</p>';
+                    } else {
+                        highScores.forEach((score, index) => {
+                            const item = document.createElement('div');
+                            item.className = 'highscore-item';
+                            
+                            let cupEmoji = '';
+                            let rankClass = '';
+                            if (index === 0) {
+                                cupEmoji = '🥇';
+                                rankClass = 'gold';
+                            } else if (index === 1) {
+                                cupEmoji = '🥈';
+                                rankClass = 'silver';
+                            } else if (index === 2) {
+                                cupEmoji = '🥉';
+                                rankClass = 'bronze';
+                            } else {
+                                cupEmoji = `${index + 1}`;
+                            }
+
+                            item.innerHTML = `
+                                <span class="highscore-rank ${rankClass}">${cupEmoji}</span>
+                                <span class="highscore-name">${score.name}</span>
+                                <span class="highscore-score">${score.score}</span>
+                                <span class="highscore-date">${score.date}</span>
+                            `;
+                            container.appendChild(item);
+                        });
+                    }
+                });
+            }
+
+            // Guide button
+            if (btnGuide) {
+                btnGuide.addEventListener('click', () => {
+                    if (mainMenu) mainMenu.classList.add('hidden');
+                    document.getElementById('guide-screen').classList.remove('hidden');
+                });
+            }
+
+            // Settings button
+            if (btnSettings) {
+                btnSettings.addEventListener('click', () => {
+                    if (mainMenu) mainMenu.classList.add('hidden');
+                    document.getElementById('settings-screen').classList.remove('hidden');
+                });
+            }
+
+            // Exit button
+            if (btnExit) {
+                btnExit.addEventListener('click', () => {
+                    if (confirm('Bạn có chắc muốn thoát game?')) {
+                        window.close();
+                    }
+                });
+            }
+
+            // Back buttons
+            if (btnBackMenu) {
+                btnBackMenu.addEventListener('click', () => {
+                    document.getElementById('highscores-screen').classList.add('hidden');
+                    if (mainMenu) mainMenu.classList.remove('hidden');
+                });
+            }
+
+            if (btnBack) {
+                btnBack.addEventListener('click', () => {
+                    document.getElementById('guide-screen').classList.add('hidden');
+                    if (mainMenu) mainMenu.classList.remove('hidden');
+                });
+            }
+
+            if (btnBackSettings) {
+                btnBackSettings.addEventListener('click', () => {
+                    document.getElementById('settings-screen').classList.add('hidden');
+                    if (mainMenu) mainMenu.classList.remove('hidden');
+                });
+            }
+        });
+    </script>
+    <script src="js/questions.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/highscore.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/powerups.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/collision.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/level.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

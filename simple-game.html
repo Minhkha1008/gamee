@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .screen.hidden {
+            display: none !important;
+        }
+
+        .menu-content {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 80px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .game-title {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-subtitle {
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            margin-bottom: 40px;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .menu-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #game-screen {
+            background: #87CEEB;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        #game-screen.bg-gradient1 {
+            background: url('hinhnen1.jpg') center/cover;
+        }
+
+        #game-screen.bg-gradient2 {
+            background: url('hinhnen2.jpg') center/cover;
+        }
+
+        #game-screen.bg-gradient3 {
+            background: url('hinhnen3.jpg') center/cover;
+        }
+
+        #game-screen.bg-gradient4 {
+            background: url('hinhnen4.jpg') center/cover;
+        }
+
+        #game-screen.bg-gradient5 {
+            background: url('hinhnen5.jpg') center/cover;
+        }
+
+        #game-screen.bg-gradient6 {
+            background: url('hinhnen6.jpg') center/cover;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 20;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+        }
+
+        .hud-left {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hud-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hud-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .high-score-display {
+            color: #ffd700;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .hud-label {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .hud-value {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .settings-btn {
+            position: fixed;
+            top: 68px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .settings-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .progress-bar-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            z-index: 20;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            transition: width 0.3s ease-out;
+            border-radius: 15px;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            z-index: 21;
+        }
+
+        .power-up-indicator {
+            position: absolute;
+            top: 128px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .power-up-timer {
+            font-size: 12px;
+            color: #ffd700;
+            margin-left: 5px;
+        }
+
+        .level-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 50px;
+            border-radius: 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            z-index: 300;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInOut 3s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        }
+
+        .falling-powerup {
+            position: absolute;
+            font-size: 30px;
+            z-index: 15;
+            animation: fall linear;
+        }
+
+        @keyframes fall {
+            from { top: -50px; }
+            to { top: 100vh; }
+        }
+
+        .power-up-item {
+            padding: 8px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .power-up-item.active {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.3);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .setting-option {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .setting-label {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .background-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .bg-option {
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .bg-option:hover {
+            transform: scale(1.05);
+        }
+
+        .bg-option.selected {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .player {
+            position: absolute;
+            font-size: 50px;
+            z-index: 10;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: left 0.05s ease-out, bottom 0.05s ease-out, transform 0.05s ease-out;
+            will-change: left, bottom, transform;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .player img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .player-vertical {
+            transform: translateX(50%) rotate(0deg);
+        }
+
+        .boundary-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            opacity: 0.8;
+        }
+
+        .enemy {
+            position: absolute;
+            font-size: 40px;
+            z-index: 8;
+        }
+
+        .bullet {
+            position: absolute;
+            font-size: 20px;
+            z-index: 9;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .popup.hidden {
+            display: none;
+        }
+
+        .quiz-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 50px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .quiz-option.correct {
+            background: #28a745;
+        }
+
+        .quiz-option.wrong {
+            background: #dc3545;
+        }
+    </style>
+
+<body>
+    <!-- Settings Button -->
+    <button id="settings-btn" class="settings-btn">⚙️</button>
+
+    <!-- Main Menu Screen -->
+    <div id="main-menu" class="screen">
+        <div class="menu-content">
+            <h1 class="game-title">🚀 Quiz Plane Game</h1>
+            <p class="game-subtitle">Bắn kẻ địch và trả lời câu hỏi!</p>
+            <div class="menu-buttons">
+                <button id="btn-play" class="menu-btn">Chơi Ngay</button>
+                <button id="btn-instructions" class="menu-btn">Hướng Dẫn</button>
+                <button id="btn-home" class="menu-btn">🏠 Trang Chủ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Screen -->
+    <div id="instructions-screen" class="screen hidden">
+        <div class="menu-content">
+            <h1 class="game-title">Hướng Dẫn</h1>
+            <p class="game-subtitle">Sử dụng phím mũi tên để di chuyển máy bay</p>
+            <p class="game-subtitle">Nhấn Space để bắn</p>
+            <p class="game-subtitle">Trả lời đúng câu hỏi để được điểm</p>
+            <div class="menu-buttons">
+                <button id="btn-back" class="menu-btn">Quay Lại</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen hidden">
+        <div id="game-container" class="game-container">
+            <div class="hud">
+                <div class="hud-left">
+                    <div class="hud-item">
+                        <span class="hud-label">Điểm:</span>
+                        <span id="score" class="hud-value">0</span>
+                    </div>
+                    <div class="high-score-display">
+                        <span class="hud-label">Điểm cao nhất:</span>
+                        <span id="high-score" class="hud-value">0</span>
+                    </div>
+                </div>
+                <div class="hud-right">
+                    <div class="hud-item">
+                        <span class="hud-label">Mạng:</span>
+                        <span id="lives" class="hud-value">❤❤❤</span>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">Màn:</span>
+                        <span id="stage" class="hud-value">1</span>
+                    </div>
+                </div>
+            </div>
+            <div id="boundary-line" class="boundary-line"></div>
+            <div id="player" class="player"><img src="pngtree-military-fighter-icon-flat-style-png-image_5178510.jpg" alt=""></div>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+                <span id="progress-text" class="progress-text">0 / 1000</span>
+            </div>
+            <div class="power-up-indicator">
+                <div id="powerup-speed" class="power-up-item">
+                    <span>⚡ Tốc độ x2</span>
+                    <span id="powerup-speed-timer" class="power-up-timer"></span>
+                </div>
+                <div id="powerup-size" class="power-up-item">
+                    <span>💥 Đạn to</span>
+                    <span id="powerup-size-timer" class="power-up-timer"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Popup -->
+    <div id="quiz-popup" class="popup hidden">
+        <div class="quiz-content">
+            <h2 id="quiz-question" class="quiz-question">Câu hỏi?</h2>
+            <div id="quiz-options" class="quiz-options"></div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameover-screen" class="screen hidden">
+        <div class="menu-content">
+            <h1 class="game-title">Game Over!</h1>
+            <p class="game-subtitle">Điểm của bạn: <span id="final-score">0</span></p>
+            <p class="game-subtitle">Cấp đạt được: <span id="final-level">1</span></p>
+            <div class="menu-buttons">
+                <button id="btn-restart" class="menu-btn">Chơi Lại</button>
+                <button id="btn-menu" class="menu-btn">Menu Chính</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen hidden">
+        <div class="menu-content">
+            <h1 class="game-title">⚙️ Cài Đặt</h1>
+            <div class="setting-option">
+                <span class="setting-label">Chọn nền game:</span>
+                <div class="background-options">
+                    <div class="bg-option" data-bg="bg-gradient1" style="background: url('hinhnen1.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient2" style="background: url('hinhnen2.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient3" style="background: url('hinhnen3.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient4" style="background: url('hinhnen4.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient5" style="background: url('hinhnen5.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient6" style="background: url('hinhnen6.jpg') center/cover;"></div>
+                </div>
+            </div>
+            <div class="menu-buttons">
+                <button id="btn-settings-back" class="menu-btn">Quay Lại Tiếp Tục</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game configuration
+        const gameConfig = {
+            playerIcon: 'anhmaybay2.png',
+            playerSize: 50,
+            movementSpeed: 5,
+            boundaryLinePercent: 0.67,
+            autoShootInterval: 500,
+            levelScoreThreshold: 1000, // Điểm cần để tăng level
+            stageScoreThreshold: 2000, // Điểm cần để qua màn
+            bulletSpeed: 6,
+            bulletSize: 20,
+            powerUpDuration: 20000 // 20 giây
+        };
+
+        // Game state
+        const gameState = {
+            isRunning: false,
+            quizActive: false,
+            gameStarted: false,
+            score: 0,
+            lives: 3,
+            level: 1,
+            stage: 1,
+            highScore: 0,
+            playerX: 0,
+            playerY: 0,
+            isMovingLeft: false,
+            isMovingRight: false,
+            isMovingUp: false,
+            isMovingDown: false,
+            isTouching: false,
+            touchX: 0,
+            touchY: 0,
+            enemies: [],
+            bullets: [],
+            powerups: [],
+            shootCooldown: 200,
+            lastShotTime: 0,
+            spawnRate: 2000,
+            lastSpawnTime: 0,
+            lastPowerUpSpawnTime: 0,
+            pendingSpawnDelayMs: 1500,
+            boundaryTop: 0,
+            boundaryBottom: 0,
+            autoShootTimer: null,
+            powerUpSpeed: false,
+            powerUpSize: false,
+            powerUpSpeedTimer: null,
+            powerUpSizeTimer: null,
+            powerUpSpeedRemaining: 0,
+            powerUpSizeRemaining: 0,
+            selectedBackground: 'bg-gradient1'
+        };
+
+        // Questions by difficulty level
+        const questionsByLevel = {
+            1: [
+                { question: "Ai là người đẹp trai và dễ thương nhất?", options: ["Việt", "Minh", "Trung", "Thầy Long"], correct: 3 },
+                { question: "HTML dùng để làm gì?", options: ["Thiết kế giao diện", "Tạo cấu trúc Website", "Quản lý Database", "Chạy Server"], correct: 1 },
+                { question: "Tag nào dùng để tạo tiêu đề lớn nhất?", options: ["<title>", "<h1>", "<header>", "<heading>"], correct: 1 },
+                { question: "Tag nào dùng để tạo liên kết?", options: ["<link>", "<a>", "<href>", "<url>"], correct: 1 },
+                { question: "CSS dùng để làm gì?", options: ["Tạo cấu trúc", "Thiết kế giao diện", "Lưu trữ dữ liệu", "Chạy server"], correct: 1 }
+            ],
+            2: [
+                { question: "CSS property nào dùng để thay đổi màu chữ?", options: ["text-color", "color", "font-color", "background"], correct: 1 },
+                { question: "JavaScript dùng để tạo biến với từ khóa nào?", options: ["var", "variable", "create", "new"], correct: 0 },
+                { question: "HTML attribute href dùng cho thẻ nào?", options: ["<img>", "<link>", "<a>", "<div>"], correct: 2 },
+                { question: "CSS display:none làm gì?", options: ["Ẩn element", "Hiện element", "Xóa element", "Đổi màu"], correct: 0 },
+                { question: "JavaScript console.log dùng để làm gì?", options: ["Hiển thị lỗi", "In ra console", "Tạo biến", "Xóa dữ liệu"], correct: 1 }
+            ],
+            3: [
+                { question: "CSS Flexbox dùng để làm gì?", options: ["Tạo animation", "Layout responsive", "Đổi màu", "Tạo database"], correct: 1 },
+                { question: "JavaScript array method nào dùng để thêm phần tử?", options: ["remove", "delete", "push", "pop"], correct: 2 },
+                { question: "HTML5 semantic tag nào dùng cho navigation?", options: ["<nav>", "<menu>", "<link>", "<header>"], correct: 0 },
+                { question: "CSS z-index làm gì?", options: ["Đổi màu", "Thay đổi kích thước", "Thứ tự hiển thị", "Tạo animation"], correct: 2 },
+                { question: "JavaScript let khác var như thế nào?", options: ["Không khác", "Block scope", "Global scope", "Không thể dùng"], correct: 1 }
+            ]
+        };
+
+        function getQuestionsForLevel(level) {
+            const maxLevel = 3;
+            const actualLevel = Math.min(level, maxLevel);
+            return questionsByLevel[actualLevel] || questionsByLevel[1];
+        }
+
+        let currentQuestion = null;
+        let gameLoop = null;
+        let isFirstQuestion = true;
+
+        // DOM Elements
+        const mainMenu = document.getElementById('main-menu');
+        const instructionsScreen = document.getElementById('instructions-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const settingsScreen = document.getElementById('settings-screen');
+        const quizPopup = document.getElementById('quiz-popup');
+        const gameoverScreen = document.getElementById('gameover-screen');
+        const player = document.getElementById('player');
+        const gameContainer = document.getElementById('game-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const powerUpSpeed = document.getElementById('powerup-speed');
+        const powerUpSize = document.getElementById('powerup-size');
+        const powerUpSpeedTimer = document.getElementById('powerup-speed-timer');
+        const powerUpSizeTimer = document.getElementById('powerup-size-timer');
+
+        // Show screen function
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        // Update HUD
+        function updateHUD() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('high-score').textContent = gameState.highScore;
+            document.getElementById('lives').textContent = '❤'.repeat(gameState.lives);
+            document.getElementById('stage').textContent = gameState.stage;
+            updateProgressBar();
+            updatePowerUpIndicators();
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const threshold = gameConfig.levelScoreThreshold;
+            const progress = Math.min((gameState.score % threshold) / threshold * 100, 100);
+            progressBar.style.width = progress + '%';
+            const currentLevelProgress = gameState.score % threshold;
+            progressText.textContent = `${currentLevelProgress} / ${threshold}`;
+        }
+
+        // Update power-up indicators
+        function updatePowerUpIndicators() {
+            if (gameState.powerUpSpeed) {
+                powerUpSpeed.classList.add('active');
+                powerUpSpeedTimer.textContent = Math.ceil(gameState.powerUpSpeedRemaining / 1000) + 's';
+            } else {
+                powerUpSpeed.classList.remove('active');
+                powerUpSpeedTimer.textContent = '';
+            }
+            if (gameState.powerUpSize) {
+                powerUpSize.classList.add('active');
+                powerUpSizeTimer.textContent = Math.ceil(gameState.powerUpSizeRemaining / 1000) + 's';
+            } else {
+                powerUpSize.classList.remove('active');
+                powerUpSizeTimer.textContent = '';
+            }
+        }
+
+        // Activate power-up
+        function activatePowerUp(type) {
+            if (type === 'speed') {
+                gameState.powerUpSpeed = true;
+                gameState.powerUpSpeedRemaining = gameConfig.powerUpDuration;
+                if (gameState.powerUpSpeedTimer) clearTimeout(gameState.powerUpSpeedTimer);
+                gameState.powerUpSpeedTimer = setTimeout(() => {
+                    gameState.powerUpSpeed = false;
+                    gameState.powerUpSpeedRemaining = 0;
+                    updatePowerUpIndicators();
+                }, gameConfig.powerUpDuration);
+            } else if (type === 'size') {
+                gameState.powerUpSize = true;
+                gameState.powerUpSizeRemaining = gameConfig.powerUpDuration;
+                if (gameState.powerUpSizeTimer) clearTimeout(gameState.powerUpSizeTimer);
+                gameState.powerUpSizeTimer = setTimeout(() => {
+                    gameState.powerUpSize = false;
+                    gameState.powerUpSizeRemaining = 0;
+                    updatePowerUpIndicators();
+                }, gameConfig.powerUpDuration);
+            }
+            updatePowerUpIndicators();
+        }
+
+        // Player controls
+        document.addEventListener('keydown', (e) => {
+            if (!gameState.isRunning || gameState.quizActive) return;
+            
+            if (e.key === 'ArrowLeft' || e.key === 'Left') {
+                gameState.isMovingLeft = true;
+            } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+                gameState.isMovingRight = true;
+            } else if (e.key === 'ArrowUp' || e.key === 'Up') {
+                gameState.isMovingUp = true;
+            } else if (e.key === 'ArrowDown' || e.key === 'Down') {
+                gameState.isMovingDown = true;
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                shoot();
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'Left') {
+                gameState.isMovingLeft = false;
+            } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+                gameState.isMovingRight = false;
+            } else if (e.key === 'ArrowUp' || e.key === 'Up') {
+                gameState.isMovingUp = false;
+            } else if (e.key === 'ArrowDown' || e.key === 'Down') {
+                gameState.isMovingDown = false;
+            }
+        });
+
+        // Mobile touch controls
+        gameContainer.addEventListener('touchstart', (e) => {
+            if (!gameState.isRunning || gameState.quizActive) return;
+            e.preventDefault();
+
+            gameState.isTouching = true;
+            const touch = e.touches[0];
+            const rect = gameContainer.getBoundingClientRect();
+            gameState.touchX = touch.clientX - rect.left;
+            gameState.touchY = window.innerHeight - (touch.clientY - rect.top);
+
+            // Start auto-shooting
+            if (gameState.autoShootTimer) clearInterval(gameState.autoShootTimer);
+            gameState.autoShootTimer = setInterval(() => {
+                if (gameState.isRunning && !gameState.quizActive && gameState.isTouching) {
+                    shoot();
+                }
+            }, gameConfig.autoShootInterval);
+        }, { passive: false });
+
+        gameContainer.addEventListener('touchmove', (e) => {
+            if (!gameState.isRunning || gameState.quizActive) return;
+            e.preventDefault();
+
+            const touch = e.touches[0];
+            const rect = gameContainer.getBoundingClientRect();
+            gameState.touchX = touch.clientX - rect.left;
+            gameState.touchY = window.innerHeight - (touch.clientY - rect.top);
+        }, { passive: false });
+
+        gameContainer.addEventListener('touchend', (e) => {
+            if (!gameState.isRunning) return;
+            e.preventDefault();
+
+            gameState.isTouching = false;
+
+            // Stop auto-shooting
+            if (gameState.autoShootTimer) {
+                clearInterval(gameState.autoShootTimer);
+                gameState.autoShootTimer = null;
+            }
+        }, { passive: false });
+
+        // Shoot function
+        function shoot() {
+            const now = Date.now();
+            const cooldown = gameState.powerUpSpeed ? gameState.shootCooldown / 2 : gameState.shootCooldown;
+            if (now - gameState.lastShotTime < cooldown) return;
+            
+            gameState.lastShotTime = now;
+            
+            const bullet = document.createElement('div');
+            bullet.className = 'bullet';
+            const bulletSize = gameState.powerUpSize ? gameConfig.bulletSize * 1.5 : gameConfig.bulletSize;
+            bullet.style.fontSize = bulletSize + 'px';
+            bullet.textContent = gameState.powerUpSize ? '�' : '�';
+            // Bắn từ chính giữa ảnh máy bay
+            bullet.style.left = (gameState.playerX + gameConfig.playerSize / 2) + 'px';
+            bullet.style.bottom = '200px';
+            gameContainer.appendChild(bullet);
+            
+            const bulletSpeed = gameState.powerUpSpeed ? gameConfig.bulletSpeed * 2 : gameConfig.bulletSpeed;
+            gameState.bullets.push({
+                element: bullet,
+                x: gameState.playerX + gameConfig.playerSize / 2,
+                y: window.innerHeight - 200,
+                speed: bulletSpeed,
+                size: bulletSize
+            });
+        }
+
+        // Spawn enemy
+        function spawnEnemy() {
+            const enemy = document.createElement('div');
+            enemy.className = 'enemy';
+            // Tăng độ khó theo level
+            const enemyTypes = ['👾', '🤖', '👻', '🐲'];
+            const typeIndex = Math.min(Math.floor(Math.random() * (1 + gameState.level)), enemyTypes.length - 1);
+            enemy.textContent = enemyTypes[typeIndex];
+            enemy.style.left = (Math.random() * (window.innerWidth - 100) + 50) + 'px';
+            enemy.style.top = '-50px';
+            gameContainer.appendChild(enemy);
+            
+            // Tăng HP theo level
+            const hp = 3 + Math.floor(gameState.level / 2);
+            gameState.enemies.push({
+                element: enemy,
+                x: parseFloat(enemy.style.left),
+                y: -50,
+                hp: hp,
+                maxHp: hp
+            });
+        }
+
+        // Spawn power-up
+        function spawnPowerUp() {
+            const powerup = document.createElement('div');
+            powerup.className = 'falling-powerup';
+            const types = ['⚡', '💥'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            powerup.textContent = type;
+            powerup.style.left = (Math.random() * (window.innerWidth - 100) + 50) + 'px';
+            powerup.style.top = '-50px';
+            powerup.dataset.type = type === '⚡' ? 'speed' : 'size';
+            gameContainer.appendChild(powerup);
+            
+            gameState.powerups.push({
+                element: powerup,
+                x: parseFloat(powerup.style.left),
+                y: -50,
+                type: type === '⚡' ? 'speed' : 'size'
+            });
+        }
+
+        // Show quiz
+        function showQuiz() {
+            gameState.quizActive = true;
+            // Always vertical (stand up)
+            player.classList.add('player-vertical');
+
+            let questions;
+            if (isFirstQuestion) {
+                questions = [{ question: "Ai là người đẹp trai và dễ thương nhất?", options: ["Việt", "Minh", "Trung", "Thầy Long"], correct: 3 }];
+                isFirstQuestion = false;
+            } else {
+                questions = getQuestionsForLevel(gameState.level);
+            }
+            currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+            
+            document.getElementById('quiz-question').textContent = currentQuestion.question;
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            currentQuestion.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = String.fromCharCode(65 + index) + '. ' + option;
+                btn.dataset.answer = index;
+                btn.onclick = () => handleAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+            
+            quizPopup.classList.remove('hidden');
+        }
+
+        // Handle quiz answer
+        function handleAnswer(index, btn) {
+            const buttons = document.querySelectorAll('.quiz-option');
+            buttons.forEach(b => b.disabled = true);
+            
+            if (index === currentQuestion.correct) {
+                btn.classList.add('correct');
+                gameState.score += 1000; // Trả lời đúng được 1000 điểm
+                
+                // Random power-up khi trả lời đúng
+                if (Math.random() < 0.3) {
+                    const powerUpType = Math.random() < 0.5 ? 'speed' : 'size';
+                    activatePowerUp(powerUpType);
+                }
+            } else {
+                btn.classList.add('wrong');
+                gameState.lives--;
+            }
+            
+            updateHUD();
+            
+            // Check level progression
+            checkLevelProgression();
+            
+            setTimeout(() => {
+                quizPopup.classList.add('hidden');
+                gameState.quizActive = false;
+                
+                if (gameState.lives <= 0) {
+                    gameOver();
+                }
+            }, 1000);
+        }
+
+        // Show level notification
+        function showLevelNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'level-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Check level progression
+        function checkLevelProgression() {
+            // Check stage progression (qua màn khi đạt 1000 điểm)
+            const newStage = Math.floor(gameState.score / gameConfig.stageScoreThreshold) + 1;
+            if (newStage > gameState.stage) {
+                gameState.stage = newStage;
+                showLevelNotification(`🎉 QUA MÀN ${gameState.stage}! 🎉`);
+                // Reset score khi qua màn mới
+                gameState.score = 0;
+                // Reset level khi qua màn mới
+                gameState.level = 1;
+                updateHUD();
+            }
+            
+            // Tăng level khi đạt threshold (1000 điểm = level 2, 2000 điểm = level 3)
+            const newLevel = Math.floor(gameState.score / gameConfig.levelScoreThreshold) + 1;
+            if (newLevel > gameState.level) {
+                gameState.level = newLevel;
+                showLevelNotification(`⬆️ LEVEL UP! Cấp ${gameState.level}`);
+                // Tăng độ khó quái
+                gameState.spawnRate = Math.max(500, 2000 - (gameState.level * 200));
+            }
+        }
+
+        // Game loop
+        function update() {
+            if (!gameState.isRunning || gameState.quizActive) {
+                gameLoop = requestAnimationFrame(update);
+                return;
+            }
+            
+            // Update player position (only move below boundary line)
+            if (gameState.isMovingLeft) {
+                gameState.playerX = Math.max(25, gameState.playerX - gameConfig.movementSpeed);
+            }
+            if (gameState.isMovingRight) {
+                gameState.playerX = Math.min(window.innerWidth - 25, gameState.playerX + gameConfig.movementSpeed);
+            }
+
+            // vertical movement restricted to area below boundary line only
+            const minY = 0;  // Can go to bottom of screen
+            const maxY = gameState.boundaryBottom;  // Can only go up to boundary line
+
+            if (gameState.isMovingUp) {
+                gameState.playerY = Math.min(maxY, gameState.playerY + gameConfig.movementSpeed);
+            }
+            if (gameState.isMovingDown) {
+                gameState.playerY = Math.max(minY, gameState.playerY - gameConfig.movementSpeed);
+            }
+
+            // Mobile touch controls - move towards touch position
+            if (gameState.isTouching) {
+                const dx = gameState.touchX - gameState.playerX;
+                const dy = gameState.touchY - gameState.playerY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance > 10) {
+                    const moveX = (dx / distance) * gameConfig.movementSpeed;
+                    const moveY = (dy / distance) * gameConfig.movementSpeed;
+
+                    gameState.playerX = Math.max(25, Math.min(window.innerWidth - 25, gameState.playerX + moveX));
+                    gameState.playerY = Math.max(minY, Math.min(maxY, gameState.playerY + moveY));
+                }
+            }
+
+
+            player.style.left = gameState.playerX + 'px';
+            player.style.bottom = gameState.playerY + 'px';
+            
+            // Spawn enemies (only after game started delay + cooldown 1-2s)
+            const now = Date.now();
+            if (gameState.gameStarted && now >= gameState.lastSpawnTime + gameState.spawnRate + gameState.pendingSpawnDelayMs) {
+                spawnEnemy();
+                gameState.lastSpawnTime = now;
+
+                // next extra cooldown: 1000-2000ms
+                gameState.pendingSpawnDelayMs = 1000 + Math.floor(Math.random() * 1001);
+            }
+            
+            // Spawn power-ups occasionally (every 10-15 seconds)
+            if (gameState.gameStarted && now >= gameState.lastPowerUpSpawnTime + 10000 + Math.random() * 5000) {
+                spawnPowerUp();
+                gameState.lastPowerUpSpawnTime = now;
+            }
+            
+            // Update power-up timers
+            if (gameState.powerUpSpeed) {
+                gameState.powerUpSpeedRemaining -= 16.67; // Approximate frame time
+                if (gameState.powerUpSpeedRemaining <= 0) {
+                    gameState.powerUpSpeed = false;
+                    gameState.powerUpSpeedRemaining = 0;
+                }
+            }
+            if (gameState.powerUpSize) {
+                gameState.powerUpSizeRemaining -= 16.67;
+                if (gameState.powerUpSizeRemaining <= 0) {
+                    gameState.powerUpSize = false;
+                    gameState.powerUpSizeRemaining = 0;
+                }
+            }
+            updatePowerUpIndicators();
+            
+            // Update bullets
+            gameState.bullets = gameState.bullets.filter(bullet => {
+                const speed = bullet.speed || gameConfig.bulletSpeed;
+                bullet.y -= speed;
+                bullet.element.style.bottom = (200 + (window.innerHeight - 200 - bullet.y)) + 'px';
+                
+                if (bullet.y < -20) {
+                    bullet.element.remove();
+                    return false;
+                }
+                return true;
+            });
+            
+            // Update power-ups
+            gameState.powerups = gameState.powerups.filter(powerup => {
+                const powerupSpeed = 3;
+                powerup.y += powerupSpeed;
+                powerup.element.style.top = powerup.y + 'px';
+                
+                // Check collision with player
+                const playerRect = player.getBoundingClientRect();
+                const powerupRect = powerup.element.getBoundingClientRect();
+                
+                if (playerRect.left < powerupRect.right &&
+                    playerRect.right > powerupRect.left &&
+                    playerRect.top < powerupRect.bottom &&
+                    playerRect.bottom > powerupRect.top) {
+                    // Player collected power-up
+                    activatePowerUp(powerup.type);
+                    powerup.element.remove();
+                    return false;
+                }
+                
+                // Check collision with bullets
+                for (let i = gameState.bullets.length - 1; i >= 0; i--) {
+                    const bullet = gameState.bullets[i];
+                    const bulletRect = bullet.element.getBoundingClientRect();
+                    
+                    if (bulletRect.left < powerupRect.right &&
+                        bulletRect.right > powerupRect.left &&
+                        bulletRect.top < powerupRect.bottom &&
+                        bulletRect.bottom > powerupRect.top) {
+                        // Bullet hit power-up - activate it
+                        activatePowerUp(powerup.type);
+                        bullet.element.remove();
+                        gameState.bullets.splice(i, 1);
+                        powerup.element.remove();
+                        return false;
+                    }
+                }
+                
+                if (powerup.y > window.innerHeight + 50) {
+                    powerup.element.remove();
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // Update enemies
+            gameState.enemies = gameState.enemies.filter(enemy => {
+                // Tăng tốc độ quái theo level
+                const enemySpeed = 2 + gameState.level * 0.5;
+                enemy.y += enemySpeed;
+                enemy.element.style.top = enemy.y + 'px';
+                
+                // Check collision with player
+                const playerRect = player.getBoundingClientRect();
+                const enemyRect = enemy.element.getBoundingClientRect();
+                
+                if (playerRect.left < enemyRect.right &&
+                    playerRect.right > enemyRect.left &&
+                    playerRect.top < enemyRect.bottom &&
+                    playerRect.bottom > enemyRect.top) {
+                    gameState.lives--;
+                    updateHUD();
+                    enemy.element.remove();
+                    if (gameState.lives <= 0) {
+                        gameOver();
+                    }
+                    return false;
+                }
+                
+                // Check collision with bullets
+                for (let i = gameState.bullets.length - 1; i >= 0; i--) {
+                    const bullet = gameState.bullets[i];
+                    const bulletRect = bullet.element.getBoundingClientRect();
+                    
+                    if (bulletRect.left < enemyRect.right &&
+                        bulletRect.right > enemyRect.left &&
+                        bulletRect.top < enemyRect.bottom &&
+                        bulletRect.bottom > enemyRect.top) {
+                        bullet.element.remove();
+                        gameState.bullets.splice(i, 1);
+                        enemy.hp--;
+                        gameState.score += 10;
+                        
+                        if (enemy.hp <= 0) {
+                            enemy.element.remove();
+                            gameState.score += 50;
+                            updateHUD();
+                            showQuiz();
+                            return false;
+                        }
+                        break;
+                    }
+                }
+                
+                if (enemy.y > window.innerHeight + 50) {
+                    enemy.element.remove();
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            gameLoop = requestAnimationFrame(update);
+        }
+
+        // Load high score from localStorage
+        function loadHighScore() {
+            const saved = localStorage.getItem('quizPlaneHighScore');
+            if (saved) {
+                gameState.highScore = parseInt(saved);
+            }
+        }
+
+        // Save high score to localStorage
+        function saveHighScore() {
+            if (gameState.score > gameState.highScore) {
+                gameState.highScore = gameState.score;
+                localStorage.setItem('quizPlaneHighScore', gameState.highScore);
+            }
+            
+            // Also save to leaderboard system
+            const highScores = JSON.parse(localStorage.getItem('quizPlaneHighScores') || '[]');
+            const newScore = {
+                score: gameState.score,
+                name: 'Player',
+                date: new Date().toLocaleDateString('vi-VN')
+            };
+            highScores.push(newScore);
+            highScores.sort((a, b) => b.score - a.score);
+            if (highScores.length > 10) {
+                highScores.length = 10;
+            }
+            localStorage.setItem('quizPlaneHighScores', JSON.stringify(highScores));
+        }
+
+        // Start game
+        function startGame() {
+            loadHighScore();
+            isFirstQuestion = true;
+            
+            gameState.isRunning = true;
+            gameState.score = 0;
+            gameState.lives = 3;
+            gameState.level = 1;
+            gameState.stage = 1;
+
+            gameState.playerX = window.innerWidth / 2;
+            gameState.playerY = 180;
+
+            gameState.isMovingLeft = false;
+            gameState.isMovingRight = false;
+            gameState.isMovingUp = false;
+            gameState.isMovingDown = false;
+
+            gameState.isTouching = false;
+            gameState.touchX = 0;
+            gameState.touchY = 0;
+
+            gameState.enemies = [];
+            gameState.bullets = [];
+            gameState.powerups = [];
+
+            gameState.quizActive = false;
+            gameState.powerUpSpeed = false;
+            gameState.powerUpSize = false;
+            gameState.powerUpSpeedRemaining = 0;
+            gameState.powerUpSizeRemaining = 0;
+
+            gameState.spawnRate = 2000;
+            gameState.lastSpawnTime = 0;
+            gameState.lastPowerUpSpawnTime = 0;
+            gameState.pendingSpawnDelayMs = 1500;
+
+            gameState.gameStarted = false;
+
+            // Apply selected background
+            applyBackground();
+
+            // Set player icon from config (support both emoji and image)
+            player.innerHTML = '';
+            if (gameConfig.playerIcon.match(/\.(png|jpg|jpeg|gif|webp)$/i)) {
+                // It's an image file
+                const img = document.createElement('img');
+                img.src = gameConfig.playerIcon;
+                img.alt = 'player';
+                img.style.width = gameConfig.playerSize + 'px';
+                img.style.height = gameConfig.playerSize + 'px';
+
+                // Add error handling for image loading
+                img.onerror = function() {
+                    console.error('Failed to load image:', gameConfig.playerIcon);
+                    // Fallback to emoji if image fails to load
+                    player.innerHTML = '🚀';
+                    player.style.fontSize = gameConfig.playerSize + 'px';
+                };
+
+                player.appendChild(img);
+            } else {
+                // It's an emoji
+                player.textContent = gameConfig.playerIcon;
+                player.style.fontSize = gameConfig.playerSize + 'px';
+            }
+            player.classList.add('player-vertical');
+
+            // Clear existing elements
+            document.querySelectorAll('.enemy, .bullet, .falling-powerup').forEach(el => el.remove());
+
+            // Set boundary line position from config
+            const boundaryLine = document.getElementById('boundary-line');
+            const boundaryY = window.innerHeight * gameConfig.boundaryLinePercent;
+            boundaryLine.style.top = boundaryY + 'px';
+            gameState.boundaryTop = boundaryY;
+
+            // convert top boundaryY into bottom coordinate used by player.style.bottom
+            // boundaryY is px from top; bottom coordinate = viewportHeight - boundaryY
+            gameState.boundaryBottom = window.innerHeight - boundaryY;
+
+            // initial random extra cooldown for first spawn
+            gameState.pendingSpawnDelayMs = 1000 + Math.floor(Math.random() * 1001);
+
+            updateHUD();
+            showScreen('game-screen');
+
+            // Delay enemy spawning by 1-2 seconds (start gate)
+            setTimeout(() => {
+                gameState.gameStarted = true;
+                // allow immediate readiness for spawn scheduling
+                gameState.lastSpawnTime = Date.now();
+            }, 1500);
+
+            gameLoop = requestAnimationFrame(update);
+        }
+
+        // Game over
+        function gameOver() {
+            gameState.isRunning = false;
+            cancelAnimationFrame(gameLoop);
+            
+            // Save high score
+            saveHighScore();
+
+            // Clean up auto-shoot timer
+            if (gameState.autoShootTimer) {
+                clearInterval(gameState.autoShootTimer);
+                gameState.autoShootTimer = null;
+            }
+
+            // Clean up power-up timers
+            if (gameState.powerUpSpeedTimer) {
+                clearTimeout(gameState.powerUpSpeedTimer);
+                gameState.powerUpSpeedTimer = null;
+            }
+            if (gameState.powerUpSizeTimer) {
+                clearTimeout(gameState.powerUpSizeTimer);
+                gameState.powerUpSizeTimer = null;
+            }
+
+            document.getElementById('final-score').textContent = gameState.score;
+            document.getElementById('final-level').textContent = gameState.level;
+            showScreen('gameover-screen');
+        }
+
+        // Apply background
+        function applyBackground() {
+            gameScreen.className = 'screen';
+            if (gameState.selectedBackground) {
+                gameScreen.classList.add(gameState.selectedBackground);
+            }
+        }
+
+        // Event listeners
+        document.getElementById('btn-play').addEventListener('click', startGame);
+        document.getElementById('btn-instructions').addEventListener('click', () => showScreen('instructions-screen'));
+        document.getElementById('btn-back').addEventListener('click', () => showScreen('main-menu'));
+        document.getElementById('btn-restart').addEventListener('click', startGame);
+        document.getElementById('btn-menu').addEventListener('click', () => showScreen('main-menu'));
+        document.getElementById('btn-home').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+        
+        // Settings button - pause game and show settings
+        document.getElementById('settings-btn').addEventListener('click', () => {
+            gameState.isRunning = false;
+            showScreen('settings-screen');
+        });
+        
+        // Settings back button - resume game
+        document.getElementById('btn-settings-back').addEventListener('click', () => {
+            showScreen('game-screen');
+            gameState.isRunning = true;
+            gameLoop = requestAnimationFrame(update);
+        });
+        
+        // Background selection
+        document.querySelectorAll('.bg-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                document.querySelectorAll('.bg-option').forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                // Update selected background
+                gameState.selectedBackground = option.dataset.bg;
+                // Only apply background if game screen is visible
+                if (!gameScreen.classList.contains('hidden')) {
+                    applyBackground();
+                }
+            });
+        });
+
+        // Auto-start game when loaded from iframe
+        window.addEventListener('load', () => {
+            // Small delay to ensure everything is loaded
+            setTimeout(() => {
+                startGame();
+            }, 500);
+        });
+
+        // Keyboard support for quiz
+        document.addEventListener('keydown', (e) => {
+            if (!gameState.quizActive) return;
+            
+            const key = parseInt(e.key);
+            if (key >= 1 && key <= 4) {
+                const buttons = document.querySelectorAll('.quiz-option');
+                if (buttons[key - 1]) {
+                    buttons[key - 1].click();
+                }
+            }
+        });
+
+        console.log('Simple game loaded successfully!');
+    </script>
+</body>
+</html>

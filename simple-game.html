@@ -41,17 +41,38 @@
         .menu-content {
             text-align: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 80px;
+            padding: 30px 40px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             border: 3px solid rgba(255, 255, 255, 0.3);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .game-title {
-            font-size: 3rem;
+            font-size: 2rem;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .menu-content {
+                padding: 20px 15px;
+            }
+            .game-title {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            .game-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+            .menu-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
         }
 
         .game-subtitle {
@@ -90,8 +111,12 @@
             align-items: flex-start;
         }
 
+        #game-screen.bg-gradient0 {
+            background: url('hinhnen.jpg') center/cover;
+        }
+
         #game-screen.bg-gradient1 {
-            background: url('hinhnen1.jpg') center/cover;
+            background: url('hinhnen1.webp') center/cover;
         }
 
         #game-screen.bg-gradient2 {
@@ -304,29 +329,72 @@
         }
 
         .setting-option {
-            margin: 15px 0;
+            margin: 10px 0;
             text-align: left;
         }
 
         .setting-label {
             color: #fff;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
             display: block;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .setting-row label {
+            color: #fff;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .setting-row input[type="range"] {
+            flex: 1;
+            min-width: 80px;
+            max-width: 150px;
+            accent-color: #f5576c;
+        }
+
+        .setting-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #f5576c;
+            cursor: pointer;
+        }
+
+        .setting-row select {
+            padding: 5px 8px;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+        }
+
+        .setting-value {
+            color: #ffd700;
+            font-size: 0.8rem;
+            min-width: 30px;
         }
 
         .background-options {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 5px;
         }
 
         .bg-option {
-            width: 80px;
-            height: 60px;
-            border-radius: 10px;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 8px;
             cursor: pointer;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
             transition: border-color 0.2s, transform 0.2s;
         }
 
@@ -548,9 +616,24 @@
         <div class="menu-content">
             <h1 class="game-title">⚙️ Cài Đặt</h1>
             <div class="setting-option">
-                <span class="setting-label">Chọn nền game:</span>
+                <span class="setting-label">🔊 Âm lượng:</span>
+                <div class="setting-row">
+                    <input type="range" id="settings-volume" min="0" max="100" value="70">
+                    <span id="settings-volume-value" class="setting-value">70%</span>
+                </div>
+            </div>
+            <div class="setting-option">
+                <span class="setting-label">🔔 Hiệu ứng âm thanh:</span>
+                <div class="setting-row">
+                    <input type="checkbox" id="settings-sfx" checked>
+                    <label for="settings-sfx">Bật/Tắt</label>
+                </div>
+            </div>
+            <div class="setting-option">
+                <span class="setting-label">🖼️ Chọn nền game:</span>
                 <div class="background-options">
-                    <div class="bg-option" data-bg="bg-gradient1" style="background: url('hinhnen1.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient0" style="background: url('hinhnen.jpg') center/cover;"></div>
+                    <div class="bg-option" data-bg="bg-gradient1" style="background: url('hinhnen1.webp') center/cover;"></div>
                     <div class="bg-option" data-bg="bg-gradient2" style="background: url('hinhnen2.jpg') center/cover;"></div>
                     <div class="bg-option" data-bg="bg-gradient3" style="background: url('hinhnen3.jpg') center/cover;"></div>
                     <div class="bg-option" data-bg="bg-gradient4" style="background: url('hinhnen4.jpg') center/cover;"></div>
@@ -559,11 +642,13 @@
                 </div>
             </div>
             <div class="menu-buttons">
-                <button id="btn-settings-back" class="menu-btn">Quay Lại Tiếp Tục</button>
+                <button id="btn-settings-back" class="menu-btn">Quay Lại</button>
             </div>
         </div>
     </div>
 
+    <script src="js/sound.js"></script>
+    <script src="js/settings.js"></script>
     <script>
         // Game configuration
         const gameConfig = {
@@ -734,6 +819,7 @@
                     updatePowerUpIndicators();
                 }, gameConfig.powerUpDuration);
             }
+            soundManager.createPowerupSound();
             updatePowerUpIndicators();
         }
 
@@ -818,6 +904,9 @@
             
             gameState.lastShotTime = now;
             
+            // Play shoot sound
+            soundManager.createShootSound();
+            
             const bullet = document.createElement('div');
             bullet.className = 'bullet';
             const bulletSize = gameState.powerUpSize ? gameConfig.bulletSize * 1.5 : gameConfig.bulletSize;
@@ -884,6 +973,7 @@
         // Show quiz
         function showQuiz() {
             gameState.quizActive = true;
+            soundManager.createClickSound();
             // Always vertical (stand up)
             player.classList.add('player-vertical');
 
@@ -920,6 +1010,7 @@
             if (index === currentQuestion.correct) {
                 btn.classList.add('correct');
                 gameState.score += 1000; // Trả lời đúng được 1000 điểm
+                soundManager.createCorrectSound();
                 
                 // Random power-up khi trả lời đúng
                 if (Math.random() < 0.3) {
@@ -929,6 +1020,7 @@
             } else {
                 btn.classList.add('wrong');
                 gameState.lives--;
+                soundManager.createWrongSound();
             }
             
             updateHUD();
@@ -981,7 +1073,11 @@
 
         // Game loop
         function update() {
-            if (!gameState.isRunning || gameState.quizActive) {
+            if (!gameState.isRunning) {
+                gameLoop = null;
+                return;
+            }
+            if (gameState.quizActive) {
                 gameLoop = requestAnimationFrame(update);
                 return;
             }
@@ -1133,6 +1229,7 @@
                     playerRect.bottom > enemyRect.top) {
                     gameState.lives--;
                     updateHUD();
+                    soundManager.createDamageSound();
                     enemy.element.remove();
                     if (gameState.lives <= 0) {
                         gameOver();
@@ -1211,6 +1308,11 @@
             loadHighScore();
             isFirstQuestion = true;
             
+            // Initialize sound and settings
+            soundManager.init();
+            settingsManager.applySettings();
+            soundManager.resumeAudioContext();
+            
             gameState.isRunning = true;
             gameState.score = 0;
             gameState.lives = 3;
@@ -1248,6 +1350,7 @@
 
             // Apply selected background
             applyBackground();
+            
 
             // Set player icon from config (support both emoji and image)
             player.innerHTML = '';
@@ -1309,6 +1412,9 @@
             gameState.isRunning = false;
             cancelAnimationFrame(gameLoop);
             
+            // Play game over sound
+            soundManager.createGameOverSound();
+            
             // Save high score
             saveHighScore();
 
@@ -1333,11 +1439,37 @@
             showScreen('gameover-screen');
         }
 
-        // Apply background
+        // Apply background - only when game screen is visible
         function applyBackground() {
-            gameScreen.className = 'screen';
+            // Only apply background classes, don't reset className
+            // Remove old background classes
+            for (let i = 0; i <= 6; i++) {
+                gameScreen.classList.remove('bg-gradient' + i);
+            }
+            // Add new background class
             if (gameState.selectedBackground) {
                 gameScreen.classList.add(gameState.selectedBackground);
+            }
+        }
+        
+        // Load saved background from localStorage
+        function loadBackgroundSetting() {
+            const savedBg = localStorage.getItem('quizPlaneBackground');
+            if (savedBg) {
+                gameState.selectedBackground = savedBg;
+                // Select the corresponding option in settings
+                document.querySelectorAll('.bg-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    if (opt.dataset.bg === savedBg) {
+                        opt.classList.add('selected');
+                    }
+                });
+            } else {
+                // Default select first option
+                const firstOption = document.querySelector('.bg-option');
+                if (firstOption) {
+                    firstOption.classList.add('selected');
+                }
             }
         }
 
@@ -1353,18 +1485,50 @@
         
         // Settings button - pause game and show settings
         document.getElementById('settings-btn').addEventListener('click', () => {
-            gameState.isRunning = false;
+            if (gameState.isRunning) {
+                gameState.isRunning = false;
+                // Cancel the game loop properly
+                if (gameLoop) {
+                    cancelAnimationFrame(gameLoop);
+                    gameLoop = null;
+                }
+            }
             showScreen('settings-screen');
         });
         
-        // Settings back button - resume game
+        // Volume slider
+        document.getElementById('settings-volume').addEventListener('input', function() {
+            document.getElementById('settings-volume-value').textContent = this.value + '%';
+            // Apply volume in real-time
+            const volume = parseInt(this.value) / 100;
+            soundManager.setVolume(volume);
+        });
+        
+        // Settings back button - resume game and apply settings
         document.getElementById('btn-settings-back').addEventListener('click', () => {
+            // Save settings instantly
+            const volume = parseInt(document.getElementById('settings-volume').value) / 100;
+            const sfxEnabled = document.getElementById('settings-sfx').checked;
+            
+            settingsManager.setVolume(volume);
+            settingsManager.setSfxEnabled(sfxEnabled);
+            settingsManager.saveSettings();
+            
+            // Apply background when returning to game
+            applyBackground();
+            
+            // Show game screen and restart game loop
             showScreen('game-screen');
             gameState.isRunning = true;
+            // Always restart fresh game loop to avoid any stale state
+            if (gameLoop) {
+                cancelAnimationFrame(gameLoop);
+                gameLoop = null;
+            }
             gameLoop = requestAnimationFrame(update);
         });
         
-        // Background selection
+        // Background selection - only save, don't apply to game screen yet
         document.querySelectorAll('.bg-option').forEach(option => {
             option.addEventListener('click', () => {
                 // Remove selected class from all options
@@ -1373,13 +1537,14 @@
                 option.classList.add('selected');
                 // Update selected background
                 gameState.selectedBackground = option.dataset.bg;
-                // Only apply background if game screen is visible
-                if (!gameScreen.classList.contains('hidden')) {
-                    applyBackground();
-                }
+                // Save to localStorage
+                localStorage.setItem('quizPlaneBackground', gameState.selectedBackground);
             });
         });
 
+        // Load saved background on page load
+        loadBackgroundSetting();
+        
         // Auto-start game when loaded from iframe
         window.addEventListener('load', () => {
             // Small delay to ensure everything is loaded
